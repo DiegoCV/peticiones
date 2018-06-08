@@ -9,14 +9,10 @@
 include_once realpath('../../innerController/CargoController.php');
 
 $list=CargoController::listAll();
-$rta="";
+$rta='';
 foreach ($list as $obj => $Cargo) {	
-	$rta.="<tr>\n";
-	$rta.="<td>".$Cargo->getid()."</td>\n";
-	$rta.="<td>".$Cargo->getnombre()."</td>\n";
-	$rta.="<td>".$Cargo->getdepartamentos_id()->getid()."</td>\n";
-	$rta.="</tr>\n";
+	$rta.='<option value="'.$Cargo->getid().'">'.$Cargo->getnombre().'</option>';
 }
+
 echo $rta;
 
-//That´s all folks!

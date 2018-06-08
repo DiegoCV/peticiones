@@ -151,6 +151,37 @@ $usuario_id=$peticiones_soporte->getUsuario_id()->getId();
       }
   }
 
+  public function listByUsuario($usuario){
+      $lista = array();
+      try {
+          $sql = " SELECT `id`, `peticion`,`fecha_ini`, `fecha_fin`, `solucion`, `estado`, `usuario_id` 
+                   FROM `peticiones_soporte` 
+                   WHERE `usuario_id` = $usuario 
+                   ORDER BY `id`
+                   DESC";
+          $data = $this->ejecutarConsulta($sql);
+          for ($i=0; $i < count($data) ; $i++) {
+              $peticiones_soporte= new Peticiones_soporte();
+          $peticiones_soporte->setId($data[$i]['id']);
+          $peticiones_soporte->setPeticion($data[$i]['peticion']);
+          $peticiones_soporte->setFecha_ini($data[$i]['fecha_ini']);
+          $peticiones_soporte->setFecha_fin($data[$i]['fecha_fin']);
+          $peticiones_soporte->setSolucion($data[$i]['solucion']);
+          $peticiones_soporte->setEstado($data[$i]['estado']);
+           $usuario = new Usuario();
+           $usuario->setId($data[$i]['usuario_id']);
+           $peticiones_soporte->setUsuario_id($usuario);
+
+          array_push($lista,$peticiones_soporte);
+          }
+      return $lista;
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
+
+
       public function insertarConsulta($sql){
           $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
           $sentencia=$this->cn->prepare($sql);

@@ -128,6 +128,14 @@ class Peticiones_soporteController {
      return $result;
   }
 
+  public static function listByUsuario($usuario){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $peticiones_soporteDao =$FactoryDao->getpeticiones_soporteDao(self::getDataBaseDefault());
+     $result = $peticiones_soporteDao->listByUsuario($usuario);
+     $peticiones_soporteDao->close();
+     return $result;
+  }
+
 
 }
 //That´s all folks!

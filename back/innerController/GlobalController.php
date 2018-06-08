@@ -15,6 +15,6 @@
   /**
    * Para su comodidad, defina aquí el nombre de base de datos predilecto para su proyecto
    */    
-    define("DEFAULT_DBNAME", "peticiones");
+    define("DEFAULT_DBNAME", "peticiones2");
 
 //That´s all folks!

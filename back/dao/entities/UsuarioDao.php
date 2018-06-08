@@ -161,7 +161,7 @@ $contrasena=$usuario->getContrasena();
       try {
           $sql= "SELECT `id`, `nombre`, `contrasena`, `roll`, `estado`, `cargo_id`"
           ."FROM `usuario`"
-          ."WHERE `nombre`='$nombre' AND`contrasena`='$contrasena'";
+          ."WHERE `cargo_id`='$nombre' AND`contrasena`='$contrasena'";
           $data = $this->ejecutarConsulta($sql);
           for ($i=0; $i < count($data) ; $i++) {
           $usuario->setId($data[$i]['id']);
